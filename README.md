@@ -74,15 +74,16 @@ pywavelets
 
 matplotlib
 
-You can install the dependencies using the following command:
-
 
 Dataset
 Place the lung CT scan images in the ROOT folder, organized into subfolders as follows:
 
 Benign/: Contains images classified as benign
+
 Malignant/: Contains images classified as malignant
+
 Normal/: Contains images classified as normal
+
 Running the Project
 
 
