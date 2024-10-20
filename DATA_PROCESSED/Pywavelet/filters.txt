@@ -1,0 +1,109 @@
+Gaussian Blur:
+
+Purpose: Smoothes the image by reducing noise and detail.
+Parameters:
+Kernel Size: (5, 5)
+Sigma: 0
+Code: gaussian_filtered = cv2.GaussianBlur(image, (5, 5), 0)
+
+
+Median Blur:
+
+Purpose: Reduces noise while preserving edges.
+Parameters:
+Kernel Size: 5
+Code: median_filtered = cv2.medianBlur(image, 5)
+
+
+Sobel Filter (X-Axis):
+
+Purpose: Detects horizontal edges.
+Parameters:
+ddepth: cv2.CV_64F
+dx: 1 (derivative order in X-axis)
+dy: 0 (no derivative in Y-axis)
+Kernel Size: 5
+Code: sobelx = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
+
+
+Sobel Filter (Y-Axis):
+
+Purpose: Detects vertical edges.
+Parameters:
+ddepth: cv2.CV_64F
+dx: 0 (no derivative in X-axis)
+dy: 1 (derivative order in Y-axis)
+Kernel Size: 5
+Code: sobely = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=5)
+
+
+Laplacian Filter:
+
+Purpose: Detects edges by calculating the second derivative.
+Parameters:
+ddepth: cv2.CV_64F
+Code: laplacian_filtered = cv2.Laplacian(image, cv2.CV_64F)
+
+
+Canny Edge Detection:
+
+Purpose: Detects edges by finding intensity gradients.
+Parameters:
+Threshold 1: 100
+Threshold 2: 200
+Code: canny_edges = cv2.Canny(image, 100, 200)
+
+
+Unsharp Masking:
+
+Purpose: Enhances the sharpness of the image.
+Parameters:
+Gaussian Blur: Kernel Size: (9, 9), Sigma: 10.0
+Weight: 1.5 (for sharpening)
+Code:
+blurred = cv2.GaussianBlur(image, (9, 9), 10.0)
+unsharp_mask = cv2.addWeighted(image, 1.5, blurred, -0.5, 0)
+
+
+Gabor Filter:
+
+Purpose: Detects texture features and specific frequency content.
+Parameters:
+Kernel Size: (21, 21)
+Sigma: 5
+Theta: np.pi / 4 (angle of the Gabor filter)
+Lambda: 10 (wavelength of sinusoidal factor)
+Gamma: 0.5 (aspect ratio)
+Code:
+gabor_filter = cv2.getGaborKernel((21, 21), 5, np.pi/4, 10, 0.5, 0, ktype=cv2.CV_32F)
+gabor_filtered = cv2.filter2D(image, cv2.CV_32F, gabor_filter)
+
+
+Bilateral Filter:
+
+Purpose: Reduces noise while preserving edges.
+Parameters:
+Diameter: 9
+Sigma Color: 75
+Sigma Space: 75
+Code: bilateral_filtered = cv2.bilateralFilter(image, 9, 75, 75)
+
+
+Non-Local Means Denoising:
+
+Purpose: Reduces noise while preserving details.
+Parameters:
+h: 30 (filter strength)
+Template Window Size: 7
+Search Window Size: 21
+Code: denoised_image = cv2.fastNlMeansDenoising(image, None, 30, 7, 21)
+
+
+Morphological Closing:
+
+Purpose: Fills small holes in the foreground or removes small holes in the background.
+Parameters:
+Kernel: (5, 5) (size of the morphological structuring element)
+Code:
+kernel = np.ones((5, 5), np.uint8)
+morph_image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
